@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COA Case Study & Simulation Assignment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; color: #1e293b; }
+        .header-glow { text-shadow: 0 0 8px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3); }
+        .tab-active { background-color: #3b82f6; color: white; border-bottom: 2px solid #2563eb; }
+        .tab-inactive { background-color: #e5e7eb; color: #4b5563; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; }
+        .card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <h1 class="text-2xl md:text-4xl font-extrabold text-blue-600 header-glow">Manipal University Jaipur</h1>
+            <p class="text-md md:text-lg text-slate-600 mt-1">School of Computer Science and Engineering</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <section class="text-center fade-in">
+             <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Computer Organization & Architecture</h2>
+             <p class="mt-2 text-2xl font-semibold text-blue-600">CSE2103: Case Study & Simulation</p>
+             <p class="mt-4 max-w-3xl mx-auto text-slate-600">
+                Welcome, future architects! This assignment is your gateway to understanding the heart of modern computing. You will dissect a processor's design, bring it to life with code, and present your findings. Let's get started!
+            </p>
+            <div class="mt-6 flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-4 text-lg font-semibold">
+                <span>Total Marks: 10</span>
+                <span class="text-slate-300 hidden md:inline">|</span>
+                <span>Part 1: Simulation (5 Marks)</span>
+                 <span class="text-slate-300 hidden md:inline">|</span>
+                <span>Part 2: Presentation (5 Marks)</span>
+            </div>
+             <div class="mt-4 text-center">
+                <p class="text-lg font-semibold text-red-600">Submission Deadline: 3rd November, Monday</p>
+            </div>
+        </section>
+
+        <section class="my-12 md:my-16 fade-in" style="animation-delay: 0.2s;">
+            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-xl">
+                 <h3 class="text-2xl font-bold text-center mb-4">Find Your Assignment</h3>
+                 <div id="search-container" class="flex flex-col sm:flex-row gap-4">
+                     <input type="text" id="search-input" placeholder="Enter your registration number..." class="flex-grow p-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500">
+                     <button id="search-btn" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-300">Search</button>
+                 </div>
+                 <div id="search-result-container" class="mt-4"></div>
+            </div>
+        </section>
+        
+        <section class="my-12 md:my-16 fade-in" style="animation-delay: 0.4s;">
+            <div class="w-full max-w-5xl mx-auto">
+                <div class="flex border-b border-gray-300">
+                    <button class="tab-btn tab-active flex-1 py-3 px-4 font-semibold rounded-t-lg transition text-sm sm:text-base" data-tab="part1">
+                        Part 1: Architecture Simulation
+                    </button>
+                    <button class="tab-btn tab-inactive flex-1 py-3 px-4 font-semibold rounded-t-lg transition text-sm sm:text-base" data-tab="part2">
+                        Part 2: Video Presentation
+                    </button>
+                </div>
+                
+                <div class="bg-white p-6 md:p-8 rounded-b-lg shadow-xl">
+                    <div id="part1" class="tab-content">
+                        <h3 class="text-2xl font-bold mb-4">Simulation Task (5 Marks)</h3>
+                        <p class="text-slate-600 mb-6">Write a simple assembly program for your assigned architecture to either calculate the factorial of a number (e.g., 8!) or generate the first 10 numbers of the Fibonacci sequence. Your well-commented code should demonstrate basic arithmetic, data movement, and control flow instructions.</p>
+                        
+                        <h4 class="text-xl font-bold mb-4">Recommended Simulators</h4>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                           <div class="card bg-slate-50 p-5 rounded-lg border">
+                                <h5 class="font-bold text-lg text-blue-700">
+                                    <a href="http://courses.missouristate.edu/kenvollmar/mars/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">MARS</a> / 
+                                    <a href="https://github.com/TheThirdOne/rars" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">RARS</a>
+                                </h5>
+                                <p class="text-sm text-slate-600 mt-2">The go-to IDEs for MIPS and RISC-V assembly. User-friendly and perfect for educational purposes.</p>
+                            </div>
+                            <div class="card bg-slate-50 p-5 rounded-lg border">
+                                <h5 class="font-bold text-lg text-blue-700">
+                                    <a href="https://www.qemu.org/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">QEMU</a>
+                                </h5>
+                                <p class="text-sm text-slate-600 mt-2">A powerful machine emulator for a wide variety of architectures like x86, ARM, PowerPC, and SPARC.</p>
+                            </div>
+                            <div class="card bg-slate-50 p-5 rounded-lg border">
+                                <h5 class="font-bold text-lg text-blue-700">
+                                    <a href="http://simh.trailing-edge.com/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">SimH</a>
+                                </h5>
+                                <p class="text-sm text-slate-600 mt-2">A highly portable simulator for historical architectures like the DEC PDP-11, VAX, and IBM System/360.</p>
+                            </div>
+                            <div class="card bg-slate-50 p-5 rounded-lg border">
+                                <h5 class="font-bold text-lg text-blue-700">
+                                    <a href="https://www.gem5.org/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">GEM5</a>
+                                </h5>
+                                <p class="text-sm text-slate-600 mt-2">A research-grade simulator for x86, ARM, and RISC-V, ideal for detailed performance analysis.</p>
+                            </div>
+                            <div class="card bg-slate-50 p-5 rounded-lg border">
+                                <h5 class="font-bold text-lg text-blue-700">
+                                    <a href="https://bochs.sourceforge.io/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">Bochs</a>
+                                </h5>
+                                <p class="text-sm text-slate-600 mt-2">An open-source emulator for x86 and x86-64, great for understanding low-level hardware interactions.</p>
+                            </div>
+                            <div class="card bg-slate-50 p-5 rounded-lg border">
+                                <h5 class="font-bold text-lg text-blue-700">
+                                    <a href="https://www.keil.com/mdk5/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">Keil MDK</a> / 
+                                    <a href="https://www.iar.com/products/iar-embedded-workbench/" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500">IAR</a>
+                                </h5>
+                                <p class="text-sm text-slate-600 mt-2">Industry-standard toolchains for microcontrollers (ARM Cortex-M, 8051) with powerful simulators.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="part2" class="tab-content hidden">
+                        <h3 class="text-2xl font-bold mb-4">Presentation Task (5 Marks)</h3>
+                        <p class="text-slate-600 mb-6">
+                            Prepare and record a <strong>7-10 minute video presentation</strong>. This video must include two parts: 
+                            <br><strong>1. Case Study Presentation:</strong> A summary of your research on the assigned architecture, covering the points below.
+                            <br><strong>2. Code Demonstration:</strong> A live demo where you explain your assembly code and run it in the simulator to show the final output.
+                        </p>
+                        
+                        <h4 class="text-xl font-bold mb-4">Guiding Questions for Case Study</h4>
+                        <div id="accordion-container" class="space-y-2">
+                            <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>1. Architecture Overview</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">What are the key features and design principles (RISC, CISC, VLIW, etc.)? What were its target applications?</p></div></div>
+                            <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>2. Instruction Set Architecture (ISA)</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">Briefly describe instruction formats and addressing modes. Highlight one or two unique or interesting instructions.</p></div></div>
+                            <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>3. Datapath & Pipelining</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">Provide a simplified datapath diagram. Describe its pipeline structure and any advanced features like superscalar or out-of-order execution.</p></div></div>
+                            <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>4. Memory Hierarchy</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">How is the cache and memory system organized? Are there any special features for memory optimization?</p></div></div>
+                            <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>5. Specialized Features & Parallelism</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">Does it support multicore processing? Does it have specialized instructions (e.g., SIMD, AI, virtualization)?</p></div></div>
+                            <div class="accordion-item border rounded-lg"><button class="accordion-header w-full flex justify-between items-center text-left p-4 font-semibold bg-slate-50 hover:bg-slate-100"><span>6. Historical Significance & Comparison</span><svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="accordion-content bg-white px-4 pb-4"><p class="text-slate-600">What is its historical importance? Briefly compare it to one other architecture in terms of performance, power, or market.</p></div></div>
+                        </div>
+                        
+                        <h4 class="text-xl font-bold mt-8 mb-4 text-red-600">Video Submission - Important Rules</h4>
+                        <ul class="list-disc list-inside space-y-3 text-slate-700 bg-red-50 p-4 rounded-lg border border-red-200">
+                            <li><strong>Video Content:</strong> The video must contain two parts: your case study presentation AND a screen share of you explaining and running your simulation code.</li>
+                            <li><strong>Visibility:</strong> Video quality must be high. Screen share (code/presentation) and the faces of <strong>both team members must be clearly visible</strong> throughout the presentation.</li>
+                            <li><strong>Audio:</strong> Ensure your audio is clear and free of any background noise or disturbances. A good microphone is recommended.</li>
+                            <li><strong>Video Link Access:</strong> The video link (e.g., YouTube, Google Drive) you submit <strong>must not have any access issues</strong>. Please set permissions to "Anyone with the link can view". Broken or private links will be marked zero.</li>
+                            <li><strong class="text-red-700">Penalty:</strong> Marks will be strictly deducted for any technical glitches (poor audio/video, broken links, access issues). It is your responsibility to double-check everything before submission.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-12 md:my-16 fade-in" style="animation-delay: 0.6s;">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">Submission Portal</h2>
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <p class="text-slate-600 mb-6">
+                        The submission for this assignment will be through a Microsoft Form. You will need to submit your final assembly code file and the working link to your video presentation. The form link will be activated here closer to the submission deadline.
+                    </p>
+                    <button id="ms-form-btn" class="w-full sm:w-auto bg-green-500 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-green-600 transition duration-300 cursor-not-allowed opacity-50" disabled>
+                        Submission Form (Link will be active soon)
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white mt-12">
+        <div class="container mx-auto px-6 py-4 text-center text-slate-500">
+            <p>&copy; 2024 Manipal University Jaipur - Department of Computer Science and Engineering</p>
+        </div>
+    </footer>
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBuL-bMW1eWD4mEIa2lpZXiFoJQAAE9goA",
+            authDomain: "coa-assignment-portal.firebaseapp.com",
+            projectId: "coa-assignment-portal",
+            storageBucket: "coa-assignment-portal.firebasestorage.app",
+            messagingSenderId: "670956564282",
+            appId: "1:670956564282:web:70b85b3c0c3dda0b3caa03"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const resultContainer = document.getElementById('search-result-container');
+
+        async function handleSearch() {
+            const registrationNo = searchInput.value.trim();
+            if (!registrationNo) {
+                resultContainer.innerHTML = `<div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md">Please enter a registration number.</div>`;
+                return;
+            }
+
+            resultContainer.innerHTML = `<div class="loader"></div><p class="text-center mt-2">Searching...</p>`;
+            searchBtn.disabled = true;
+            
+            try {
+                const studentsRef = collection(db, "students");
+                const q = query(studentsRef, where("registrationNo", "==", registrationNo));
+                const querySnapshot = await getDocs(q);
+                
+                if (querySnapshot.empty) {
+                    resultContainer.innerHTML = `<div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md">Registration number not found. Please check the number and try again.</div>`;
+                } else {
+                    let htmlResult = '';
+                    querySnapshot.forEach((doc) => {
+                        const student = doc.data();
+                        htmlResult += `
+                            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-md fade-in">
+                                <p><strong>Student Name:</strong> ${student.studentName}</p>
+                                <p><strong>Registration No:</strong> ${student.registrationNo}</p>
+                                <p class="font-bold mt-2">Assigned Processor:</p>
+                                <p class="text-lg font-semibold">${student.processor}</p>
+                            </div>
+                        `;
+                    });
+                    resultContainer.innerHTML = htmlResult;
+                }
+            } catch (error) {
+                console.error("Error searching Firestore:", error);
+                resultContainer.innerHTML = `<div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md">An error occurred while searching. Please try again.</div>`;
+            } finally {
+                searchBtn.disabled = false;
+            }
+        }
+
+        searchBtn.addEventListener('click', handleSearch);
+        searchInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                handleSearch();
+            }
+        });
+
+        // UI interactivity for tabs and accordion
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('tab-inactive');
+                });
+                button.classList.add('tab-active');
+                button.classList.remove('tab-inactive');
+                tabContents.forEach(content => {
+                    if (content.id === tabId) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('svg');
+                const isOpen = content.style.maxHeight;
+                
+                // Close all accordions first
+                document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+                document.querySelectorAll('.accordion-header svg').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                if (!isOpen) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
+
