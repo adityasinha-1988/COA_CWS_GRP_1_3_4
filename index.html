@@ -154,11 +154,23 @@
                 <h2 class="text-3xl font-bold mb-4">Submission Portal</h2>
                 <div class="bg-white p-6 rounded-lg shadow-xl">
                     <p class="text-slate-600 mb-6">
-                        The submission for this assignment will be through a Microsoft Form. You will need to submit your final assembly code file and the working link to your video presentation. The form link will be activated here closer to the submission deadline.
+                        The submission for this assignment will be through a Microsoft Form. You will need to submit your final assembly code file and the working link to your video presentation. The form link is activated now.
                     </p>
-                    <button id="ms-form-btn" class="w-full sm:w-auto bg-green-500 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-green-600 transition duration-300 cursor-not-allowed opacity-50" disabled>
-                        Submission Form (Link will be active soon)
+ </button> -->
+                    </p>   
+                    <button id="ms-form-btn" 
+                            type="button"
+                            onclick="window.open('https://forms.cloud.microsoft/r/jiQnaBypmQ', '_blank')"
+                            class="inline-flex items-center justify-center w-full sm:w-auto bg-gradient-to-r from-green-500 to-green-700 text-white font-bold py-3 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                        
+                        <!-- SVG Icon -->
+                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+
+                        <span>Submission Form</span>
                     </button>
+
                 </div>
             </div>
         </section>
@@ -280,4 +292,5 @@
 
     </script>
 </body>
+
 </html>
